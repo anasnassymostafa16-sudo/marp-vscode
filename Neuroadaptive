@@ -1,0 +1,172 @@
+---
+marp: true
+size: 16:9
+theme: default
+paginate: true
+style: |
+  /* ---------- CSS VARIABLES (tweak here) ---------- */
+  :root{
+    --accent1:#00f0ff;      /* neon cyan */
+    --accent2:#ff00c1;      /* neon magenta */
+    --dark:#0b0e17;
+    --grid:#00f0ff22;
+    --blur:12px;
+    --speed:1.2s;
+  }
+
+  /* ---------- GLOBAL SET-UP ---------- */
+  section{
+    background:radial-gradient(ellipse at center, #101525 0%, var(--dark) 100%);
+    color:#fff;
+    font-family:'Segoe UI',system-ui,sans-serif;
+    overflow:hidden;
+  }
+  h1,h2,h3{ margin:0; font-weight:700; }
+  p{ margin:.3em 0; }
+
+  /* ---------- 3-D CANVAS STAGE ---------- */
+  section::before,
+  section::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  section::before{  /* star dust */
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 40% 70%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 10%, #fff, transparent);
+    background-size:300% 300%;
+    animation: drift var(--speed) linear infinite;
+  }
+  section::after{  /* perspective grid */
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:60px 60px;
+    transform: perspective(600px) rotateX(75deg) translateZ(-120px);
+    opacity:.4;
+  }
+
+  @keyframes drift{
+    from{transform:translateY(0)}
+    to{transform:translateY(-100px)}
+  }
+
+  /* ---------- GLASS CARD ---------- */
+  .glass{
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(var(--blur));
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:1.2rem;
+    padding:2.2rem 2.8rem;
+    box-shadow:0 0 2rem rgba(0,240,255,.35);
+    transform-style:preserve-3d;
+    animation:slideIn var(--speed) cubic-bezier(.2,1,.2,1) both;
+  }
+  @keyframes slideIn{
+    from{opacity:0; transform:translateZ(-180px) rotateX(-25deg)}
+    to{opacity:1; transform:translateZ(0) rotateX(0)}
+  }
+
+  /* ---------- ACCENT TEXT ---------- */
+  .a1{ color:var(--accent1); }
+  .a2{ color:var(--accent2); }
+
+  /* ---------- LAYERED BULLETS ---------- */
+  ul.layers{
+    list-style:none;
+    padding-left:0;
+    margin-top:1.2rem;
+  }
+  ul.layers li{
+    position:relative;
+    padding-left:2.2rem;
+    margin:.6rem 0;
+    transform: translateX(60px);
+    animation: pop .5s forwards;
+    animation-delay:calc(var(--i)*.15s);
+  }
+  ul.layers li::before{
+    content:'';
+    position:absolute;
+    left:0; top:.1em;
+    width:1.3rem; height:1.3rem;
+    background:var(--accent1);
+    clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  @keyframes pop{ to{transform:translateX(0)} }
+
+  /* ---------- TITLE SHINE ---------- */
+  .shine{
+    background:linear-gradient(110deg, var(--accent1), var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shine 3s linear infinite;
+    background-size:200% auto;
+  }
+  @keyframes shine{ to{background-position:200% center} }
+---
+
+<!-- Slide 1  -->
+<section data-transition="fade">
+  <div class="glass" style="text-align:center">
+    <h1 class="shine">Neuroadaptive Learning</h1>
+    <p style="margin-top:1.2rem;font-size:1.5rem">The lesson that learns <span class="a2">your</span> brain… <br>before your brain learns the lesson.</p>
+  </div>
+</section>
+
+<!-- Slide 2  -->
+<section data-transition="zoom">
+  <div class="glass">
+    <h2 class="a1">Introduction</h2>
+    <p>Hello everyone,</p>
+    <p>Today I want to share an idea that shows us where <strong>education is heading</strong>.</p>
+    <p>Imagine a system that <span class="a2">knows</span> when you’re focused, lost, bored or energised—<strong>in real time</strong>.</p>
+    <p>That world is called <span class="a1">Neuroadaptive Learning</span>.</p>
+    <p>Education is no longer “one size fits all”…<br>it’s a living interface that <strong>listens to your brain</strong> and responds instantly.</p>
+  </div>
+</section>
+
+<!-- Slide 3  -->
+<section>
+  <div class="glass">
+    <h2 class="shine">What Is Neuroadaptive Learning?</h2>
+    <p>“A futuristic system that reads <strong>real-time brain signals</strong>—attention, focus, stress, motivation—and uses AI to adjust the lesson <span class="a2">instantly</span>.”</p>
+    <p style="margin-top:1.4rem;font-size:1.4rem">In short:</p>
+    <p class="a1" style="font-size:1.6rem">You no longer adapt to the lesson.<br>The lesson adapts to <span class="a2">you</span>.</p>
+  </div>
+</section>
+
+<!-- Slide 4  -->
+<section>
+  <div class="glass">
+    <h2 class="a1">How Does It Actually Work?</h2>
+    <p>Three synchronised layers—like a <span class="shine">digital orchestra</span>:</p>
+
+    <ul class="layers">
+      <li style="--i:1"><strong class="a2">1. Sensing Layer</strong> – wearables track attention, emotion, stress, fatigue, confusion.</li>
+      <li style="--i:2"><strong class="a2">2. Intelligence Layer</strong> – AI reads the signals and decodes your cognitive state.</li>
+      <li style="--i:3"><strong class="a2">3. Adaptation Layer</strong> – the lesson morphs automatically: equation → animation, paragraph → cinematic scene, exercise → game.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Slide 5  -->
+<section data-transition="fade-in slide-in">
+  <div class="glass" style="text-align:center">
+    <h2 class="shine">The Final Magical Punch</h2>
+    <p style="font-size:1.5rem">The future isn’t coming slowly…<br>it’s <span class="a2">already knocking</span> on the classroom door.</p>
+    <p>Education is becoming a <strong>living experience</strong>—<br>one that listens to your mind, learns from your emotions,<br>and evolves with you <span class="a1">every second</span>.</p>
+    <p class="a2" style="margin-top:2rem;font-size:1.6rem">Are we ready for a school<br>that understands our minds<br>more deeply than we ever imagined?</p>
+  </div>
+</section>
+
+<!-- Slide 6  -->
+<section data-transition="fade">
+  <div class="glass" style="text-align:center">
+    <h1 class="shine">Thank you 😊</h1>
+    <p style="margin-top:2rem">Questions?<br><span class="a1">Let’s shape the future together.</span></p>
+  </div>
+</section>
